@@ -66,15 +66,31 @@ artifacts {
 // RENAME NORMAL JAR INTO SLIM ONE AND FAT JAR SETS TO THE NORMAL ONE
 //*******************************************************************************************************
 build.doLast{
-def jarName = jar.archiveName
-def fatJarName = jarName.replaceAll('.jar','-all.jar')
-
-def jarFullPath = "$project.buildDir/libs/"+jarName
-def fatJarFullPath = "$project.buildDir/libs/"+fatJarName
-
-//rename slim jar's name
-file(jarFullPath).renameTo(file(jarFullPath +'.slim'))
-
-//rename fat jar's name
-file( fatJarFullPath ).renameTo( file( jarFullPath ) )
+    def ver = '-' + findProperty('version');
+    def jarName = jar.archiveName
+    def fatJarName = jarName.replaceAll('.jar','-all.jar')
+    
+	System.out.println('BEFORE naming change:')
+	System.out.println('version= ' + ver)
+	System.out.println('jarName= ' + jarName);
+	System.out.println('fatJarName= ' + fatJarName);
+	System.out.println("buildDir= $project.buildDir\\libs\\");
+	
+    def jarFullPath = "$project.buildDir\\libs\\"+jarName
+    def fatJarFullPath = "$project.buildDir\\libs\\"+fatJarName
+	
+	jarName = jarName.replaceAll(ver, '')
+	
+    def jarFullPathNew = "$project.buildDir\\libs\\"+jarName+'.slim'
+    def fatJarFullPathNew = "$project.buildDir\\libs\\"+jarName
+	
+	System.out.println('AFTER naming change:')
+	System.out.println('jarFullPathNew= ' + jarFullPathNew)
+	System.out.println('fatJarFullPathNew= ' + fatJarFullPathNew)
+    
+    //rename slim jar's name
+    file(jarFullPath).renameTo(file(jarFullPathNew))
+    
+    //rename fat jar's name
+    file(fatJarFullPath).renameTo(file(fatJarFullPathNew))
 }
