@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import pl.mk.tc.util.EProperties;
-import pl.mk.util.PropertiesReader;
+import pl.mk.utility.PropertiesReader;
 
 public class ThingsCourier {
 
