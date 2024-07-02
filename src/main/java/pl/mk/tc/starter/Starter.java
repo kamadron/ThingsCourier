@@ -9,7 +9,7 @@ import java.util.TimeZone;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import pl.mk.tc.FileSynchronizer;
+import pl.mk.tc.ThingsCourier;
 import pl.mk.util.PropertiesReader;
 
 public class Starter {
@@ -31,7 +31,7 @@ public class Starter {
 		try {
 			final PropertiesReader propertiesReader = new PropertiesReader();
 			final Properties properties = propertiesReader.initialize(Starter.PROPERTIES_FILEPATH);
-			FileSynchronizer fs = new FileSynchronizer(properties);
+			ThingsCourier fs = new ThingsCourier(properties);
 			TimeZone.setDefault(TimeZone.getTimeZone("Poland"));
 
 			internalMain(fs);
@@ -44,7 +44,7 @@ public class Starter {
 		}
 	}
 
-	private static void internalMain(FileSynchronizer fs) {
+	private static void internalMain(ThingsCourier fs) {
 		fs.run();
 	}
 }

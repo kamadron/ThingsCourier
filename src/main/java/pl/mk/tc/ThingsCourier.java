@@ -17,13 +17,13 @@ import org.apache.logging.log4j.Logger;
 import pl.mk.tc.util.EProperties;
 import pl.mk.util.PropertiesReader;
 
-public class FileSynchronizer {
+public class ThingsCourier {
 
 	private final Properties properties;
 
-	private Logger log = LogManager.getLogger(FileSynchronizer.class);
+	private Logger log = LogManager.getLogger(ThingsCourier.class);
 
-	public FileSynchronizer(Properties properties) {
+	public ThingsCourier(Properties properties) {
 		super();
 		this.properties = properties;
 	}
@@ -49,7 +49,7 @@ public class FileSynchronizer {
 			List<String> filenames = PropertiesReader.getMultiProperty(properties, EProperties.READ_FILENAMES.name);
 
 			if (!createDirIfNotExists(saveDir)) {
-				this.log.error("Error occurred! aborting FileSynchronizer");
+				this.log.error("Error occurred! aborting ThingsCourier");
 				return;
 			}
 
@@ -57,7 +57,7 @@ public class FileSynchronizer {
 				synchFile(ftpClient, dir, saveDir, filename, readFilesSystemSeparator);
 			}
 		} catch (Exception e) {
-			log.error("Error while running FileSynchronizer", e);
+			log.error("Error while running ThingsCourier", e);
 		} finally {
 			try {
 				if (ftpClient.isConnected()) {
@@ -65,7 +65,7 @@ public class FileSynchronizer {
 					ftpClient.disconnect();
 				}
 			} catch (IOException e) {
-				log.error("Error while disconnecting FileSynchronizer", e);
+				log.error("Error while disconnecting ThingsCourier", e);
 			}
 		}
 	}
