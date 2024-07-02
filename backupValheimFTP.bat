@@ -1,1 +1,1 @@
-"C:\Program Files\Java\jdk-11.0.7\bin\java.exe" -jar D:\Programming\eclipse-workspace\FileSynch\app\build\libs\app-all.jar
+"C:\Program Files\Java\jdk-11.0.7\bin\java.exe" -jar build\libs\ThingsCourier-all.jar
